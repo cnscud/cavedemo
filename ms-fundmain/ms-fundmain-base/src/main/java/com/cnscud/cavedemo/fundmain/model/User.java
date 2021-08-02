@@ -3,29 +3,22 @@ package com.cnscud.cavedemo.fundmain.model;
 import java.io.Serializable;
 import java.util.Date;
 
-
+/**
+ * user
+ * @author 
+ */
 public class User implements Serializable {
     private Integer id;
 
     /**
-     * 用户
+     * 昵称
      */
-    private Integer userId;
+    private String name;
 
     /**
-     * 标题
+     * 个人介绍
      */
-    private String title;
-
-    /**
-     * 缩略图
-     */
-    private String thumbnail;
-
-    /**
-     * 内容
-     */
-    private String content;
+    private String introduce;
 
     /**
      * 创建时间
@@ -47,36 +40,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getIntroduce() {
+        return introduce;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
     public Date getCreatedAt() {

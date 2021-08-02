@@ -1,10 +1,14 @@
 package com.cnscud.cavedemo.fundmain.controller;
 
+import com.cnscud.cavedemo.fundmain.model.Blog;
 import com.cnscud.cavedemo.fundmain.model.User;
+import com.cnscud.cavedemo.fundmain.service.BlogService;
 import com.cnscud.cavedemo.fundmain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Service Controller.
@@ -18,9 +22,17 @@ public class UserServiceController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private BlogService blogService;
 
     @RequestMapping("/queryById")
     public User queryUser(Integer id){
-        return userService.queryUser(id);
+        User user = userService.queryUser(id);
+        return user;
+    }
+
+    @RequestMapping("/queryBlogs")
+    public List<Blog> queryBlogs(Integer id){
+        return blogService.queryBlogs(id);
     }
 }

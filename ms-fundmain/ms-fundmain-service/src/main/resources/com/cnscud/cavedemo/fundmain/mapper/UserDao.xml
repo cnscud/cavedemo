@@ -3,48 +3,38 @@
 <mapper namespace="com.cnscud.cavedemo.fundmain.dao.UserDao">
   <resultMap id="BaseResultMap" type="com.cnscud.cavedemo.fundmain.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="thumbnail" jdbcType="VARCHAR" property="thumbnail" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, title, thumbnail, content, created_at, updated_at
+    id, `name`, introduce, created_at, updated_at
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from blog
+    from user
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from blog
+    delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cnscud.cavedemo.fundmain.model.User" useGeneratedKeys="true">
-    insert into blog (user_id, title, thumbnail, 
-      content, created_at, updated_at
-      )
-    values (#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
-      )
+    insert into user (`name`, introduce, created_at, 
+      updated_at)
+    values (#{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cnscud.cavedemo.fundmain.model.User" useGeneratedKeys="true">
-    insert into blog
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
+      <if test="name != null">
+        `name`,
       </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="thumbnail != null">
-        thumbnail,
-      </if>
-      <if test="content != null">
-        content,
+      <if test="introduce != null">
+        introduce,
       </if>
       <if test="createdAt != null">
         created_at,
@@ -54,17 +44,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="thumbnail != null">
-        #{thumbnail,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
       </if>
       <if test="createdAt != null">
         #{createdAt,jdbcType=TIMESTAMP},
@@ -75,19 +59,13 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.cnscud.cavedemo.fundmain.model.User">
-    update blog
+    update user
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="thumbnail != null">
-        thumbnail = #{thumbnail,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=VARCHAR},
       </if>
       <if test="createdAt != null">
         created_at = #{createdAt,jdbcType=TIMESTAMP},
@@ -99,11 +77,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cnscud.cavedemo.fundmain.model.User">
-    update blog
-    set user_id = #{userId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      thumbnail = #{thumbnail,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
+    update user
+    set `name` = #{name,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
