@@ -1,0 +1,34 @@
+server:
+  port: 8900
+
+spring:
+  application:
+    name: ms-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    zookeeper:
+      connect-string: 127.0.0.1:2181
+      discovery:
+        enabled: true
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        - id: default
+          uri: lb://ms-fundmain-service
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+
+
+logging:
+  level:
+    org.springframework.cloud: debug
