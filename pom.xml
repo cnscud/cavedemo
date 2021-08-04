@@ -22,5 +22,6 @@
         <module>ms-fundmain</module>
         <module>ms-gateway</module>
         <module>web</module>
+        <module>mq-consumers</module>
     </modules>
 </project>
