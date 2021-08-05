@@ -29,4 +29,10 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> queryBlogs(int userId) {
         return blogDao.selectByUserId(userId);
     }
+
+    @Override
+    public List<Blog> queryLatestBlogs(int limit) {
+        return null;
+
+    }
 }

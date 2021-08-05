@@ -15,6 +15,8 @@ public interface BlogDao {
 
     List<Blog> selectByUserId(Integer userId);
 
+    List<Blog> selectLatest(Integer limitSize);
+
     int updateByPrimaryKeySelective(Blog record);
 
     int updateByPrimaryKey(Blog record);
