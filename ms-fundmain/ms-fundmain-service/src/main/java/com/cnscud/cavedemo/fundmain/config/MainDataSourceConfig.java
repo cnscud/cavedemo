@@ -1,14 +1,14 @@
 package com.cnscud.cavedemo.fundmain.config;
 
 
-import com.zaxxer.hikari.HikariDataSource;
+import com.cnscud.xpower.dbn.SimpleDBNDataSourceFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -30,24 +30,25 @@ import javax.sql.DataSource;
 public class MainDataSourceConfig {
 
     /**
-     * 自动读取DataSource配置文件
-     */
-    @Primary
-    @Bean(name = "mainProperties")
-    @ConfigurationProperties("spring.datasource.main")
-    public DataSourceProperties mainProperties() {
-        return new DataSourceProperties();
-    }
-
-
-    /**
-     * 添加@Primary注解，设置默认数据源，事务管理器
+     * 添加@Primary注解，设置默认数据源，事务管理器.
+     * 此处使用了一个可以动态重建的DataSource, 如果Zookeeper配置改变,会动态重建.
      */
     @Primary
     @Bean(name = "mainDataSource")
-    public DataSource mainDataSource(@Qualifier("mainProperties") DataSourceProperties properties) {
-        return properties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
+    public DataSource mainDataSource() throws Exception {
+        return SimpleDBNDataSourceFactory.getInstance().getDataSource("cavedemo");
     }
+
+
+    /*
+    //常规配置: 使用application.yml里面的配置.
+    @Primary
+    @Bean(name = "mainDataSource")
+    @ConfigurationProperties("spring.datasource.main")
+    public DataSource mainDataSource() throws Exception {
+        return DataSourceBuilder.create().build();
+    }
+    */
 
     @Primary
     @Bean(name = "sqlSessionFactoryMainDataSource")
