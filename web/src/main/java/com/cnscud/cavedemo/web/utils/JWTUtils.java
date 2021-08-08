@@ -85,6 +85,10 @@ public class JWTUtils {
             String userJwtSecretKey = redisKey4UserId(userid);
 
             String secret = rediscluster.get(userJwtSecretKey);
+            //例如被清理了
+            if(secret == null){
+                return false;
+            }
 
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)

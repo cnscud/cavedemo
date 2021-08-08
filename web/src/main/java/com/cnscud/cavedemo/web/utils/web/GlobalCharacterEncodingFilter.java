@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 /**
  * Global CharacterEncodingFilter
+ * @fixme: 都2021了, 还需要这东西吗
  * 
  * @author adyliu (imxylz@gmail.com)
  * @since 2012-11-19
