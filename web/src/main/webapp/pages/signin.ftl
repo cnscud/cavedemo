@@ -78,7 +78,6 @@
 
 <script type="application/javascript">
     function gologin() {
-        alert("login")
 
         $.ajax({
             url: '/login',
@@ -89,11 +88,16 @@
                 "password": $("#password").val()
             },
             success: function (res) {
-                location.href = "/home";
+                if (res && res.code === 0) {
+                    location.href = "/home";
+                }
+                else {
+                    alert('登录失败: ' + res.msg);
+                }
             },
             error: function (res) {
                 // 错误时处理逻辑
-                alert('登录失败: ' + res.msg);
+                alert('登录失败: ' + res);
             }
         });
 

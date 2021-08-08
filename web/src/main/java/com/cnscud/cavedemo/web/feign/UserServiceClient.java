@@ -4,6 +4,7 @@ import com.cnscud.cavedemo.fundmain.model.User;
 import com.cnscud.cavedemo.fundmain.service.UserService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Feign client.
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface UserServiceClient {
 
     @RequestMapping("/queryById")
-    public User queryUser(int id);
+    public User queryUser(@RequestParam("id") int id);
 
     @RequestMapping("/queryByUsername")
-    public User queryUserByUserName(String username);
+    public User queryUserByUserName(@RequestParam("username")String username);
 
 }

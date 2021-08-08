@@ -36,7 +36,12 @@ public class IndexController {
     }
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index(Model model, HttpServletRequest request) {
+
+        User user = (User) request.getAttribute(MsgConstants.CURRENT_USER_ATTRIBUTE);
+        if(user !=null){
+            model.addAttribute("user", user);
+        }
         return "/index";
     }
 
@@ -52,8 +57,12 @@ public class IndexController {
         User user = (User) request.getAttribute(MsgConstants.CURRENT_USER_ATTRIBUTE);
         List<Blog> blogs = blogServiceClient.queryBlogsByUser(user.getId());
 
+        List<Blog> latest = blogServiceClient.queryLatestBlogs(10);
+
         model.addAttribute("user", user);
         model.addAttribute("blogs", blogs);
+
+        model.addAttribute("latestblogs", latest);
 
         return "/home";
     }

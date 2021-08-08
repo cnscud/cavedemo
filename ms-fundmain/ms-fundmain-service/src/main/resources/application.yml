@@ -9,13 +9,15 @@ spring:
       connect-string: 127.0.0.1:2181
       discovery:
         enabled: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     main:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/cavedemo?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       username: dbuser
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
-
 
 
 

@@ -4,6 +4,8 @@ server:
     context-path: /
 
 spring:
+  application:
+    name: cavedemo-web
   cloud:
     zookeeper:
       connect-string: 127.0.0.1:2181
@@ -21,6 +23,15 @@ spring:
     suffix: .ftl
     template-loader-path: /pages/
     request-context-attribute: ctx
+    settings:
+      number_format: 0.##
+      template_exception_handler: ignore
+      classic_compatible: true
+      time_format: HH:mm:ss
+      datetime_format: yyyy-MM-dd HH:mm
+      date_format: yyyy-MM-dd
+      boolean_format: true,false
+      whitespace_stripping: true
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
@@ -47,6 +58,6 @@ web:
 logging:
   level:
     com.cnscud.cavedemo: debug
-    com.cnscud.cavedemo.web.utils:info
+    com.cnscud.cavedemo.web.utils: info
 
 debug: false

@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.cnscud.cavedemo.web.feign")
+@EnableFeignClients(basePackages = "com.cnscud.cavedemo.web")
 public class WebApplication {
 
     public static void main(String[] args) {

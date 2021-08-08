@@ -32,7 +32,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> queryLatestBlogs(int limit) {
-        return null;
+        return blogDao.selectLatest(limit);
 
     }
 }

@@ -27,8 +27,8 @@ public class BlogServiceController {
     }
 
     @RequestMapping("/queryByUser")
-    public List<Blog> queryBlogsByUser(Integer userid){
-        return blogService.queryBlogsByUser(userid);
+    public List<Blog> queryBlogsByUser(Integer userId){
+        return blogService.queryBlogsByUser(userId);
     }
 
     @RequestMapping("/queryLatestList")

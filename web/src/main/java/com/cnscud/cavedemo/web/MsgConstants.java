@@ -13,7 +13,7 @@ public class MsgConstants {
     public static final int EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000;
 
     public static String Cookie_LoginToken = "z";
-    public static String Cookie_Domain = ".cnscud.com";
+    public static String Cookie_Domain = "cnscud.com";
     public static String Cookie_Path = "/";
     public static String Token_Level = "default";
 
