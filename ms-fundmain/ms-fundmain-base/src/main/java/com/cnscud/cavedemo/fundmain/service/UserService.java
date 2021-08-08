@@ -12,5 +12,7 @@ public interface UserService {
 
     public User queryUser(int id);
 
+    public User queryUserByUsername(String username);
+
 
 }

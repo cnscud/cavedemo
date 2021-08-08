@@ -11,6 +11,21 @@ public class User implements Serializable {
     private Integer id;
 
     /**
+     * 登录名
+     */
+    private String username;
+
+    /**
+     * Salt
+     */
+    private String salt;
+
+    /**
+     * 混淆后的密码
+     */
+    private String password;
+
+    /**
      * 昵称
      */
     private String name;
@@ -38,6 +53,30 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {

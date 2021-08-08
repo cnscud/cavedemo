@@ -26,7 +26,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> queryBlogs(int userId) {
+    public List<Blog> queryBlogsByUser(int userId) {
         return blogDao.selectByUserId(userId);
     }
 

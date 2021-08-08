@@ -1,7 +1,7 @@
 package com.cnscud.cavedemo.fundmain.controller;
 
-import com.cnscud.cavedemo.fundmain.dao.BlogDao;
 import com.cnscud.cavedemo.fundmain.model.Blog;
+import com.cnscud.cavedemo.fundmain.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,16 +19,22 @@ import java.util.List;
 public class BlogServiceController {
 
     @Autowired
-    private BlogDao blogdao;
+    private BlogService blogService;
 
-    @RequestMapping("/view")
+    @RequestMapping("/queryById")
     public Blog queryBlog(int id){
-        return blogdao.selectByPrimaryKey(id);
+        return blogService.queryBlog(id);
     }
 
-    @RequestMapping("/list")
-    public List<Blog> queryLatestBlogs(){
-        return blogdao.selectLatest(10);
+    @RequestMapping("/queryByUser")
+    public List<Blog> queryBlogsByUser(Integer userid){
+        return blogService.queryBlogsByUser(userid);
     }
+
+    @RequestMapping("/queryLatestList")
+    public List<Blog> queryLatestBlogs(){
+        return blogService.queryLatestBlogs(10);
+    }
+
 
 }

@@ -25,14 +25,18 @@ public class UserServiceController {
     @Autowired
     private BlogService blogService;
 
+
+
     @RequestMapping("/queryById")
     public User queryUser(Integer id){
         User user = userService.queryUser(id);
         return user;
     }
 
-    @RequestMapping("/queryBlogs")
-    public List<Blog> queryBlogs(Integer id){
-        return blogService.queryBlogs(id);
+
+    @RequestMapping("/queryByUsername")
+    public User queryUserByUsername(String username) {
+        return userService.queryUserByUsername(username);
     }
+
 }

@@ -6,8 +6,7 @@
 * > 自定义配置: Zookeeper
 * > 缓存操作 Redis  
 * > 队列操作 Kafka: Producer, Consumer
-* 
-* MyBatis配置存到Zookeeper
+* > MyBatis配置存到Zookeeper, 支持动态修改数据库
 * 
 * 用户登录授权
 * 模版: Freemarker支持
@@ -50,7 +49,6 @@
 * 文档: 环境准备
 * 数据: 整理到文件
 
-* ZkClient升级 以后再说...目标  
 
 
 

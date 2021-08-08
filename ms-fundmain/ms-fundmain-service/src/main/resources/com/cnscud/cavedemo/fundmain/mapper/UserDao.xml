@@ -3,13 +3,16 @@
 <mapper namespace="com.cnscud.cavedemo.fundmain.dao.UserDao">
   <resultMap id="BaseResultMap" type="com.cnscud.cavedemo.fundmain.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, introduce, created_at, updated_at
+    id, username, salt, `password`, `name`, introduce, created_at, updated_at
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -17,19 +20,38 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cnscud.cavedemo.fundmain.model.User" useGeneratedKeys="true">
-    insert into user (`name`, introduce, created_at, 
+    insert into user (username, salt, `password`,
+      `name`, introduce, created_at,
       updated_at)
-    values (#{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+    values (#{username,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cnscud.cavedemo.fundmain.model.User" useGeneratedKeys="true">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
       <if test="name != null">
         `name`,
       </if>
@@ -44,6 +66,15 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -61,6 +92,15 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cnscud.cavedemo.fundmain.model.User">
     update user
     <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
@@ -78,7 +118,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cnscud.cavedemo.fundmain.model.User">
     update user
-    set `name` = #{name,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}

@@ -1,0 +1,52 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+
+spring:
+  cloud:
+    zookeeper:
+      connect-string: 127.0.0.1:2181
+      discovery:
+        enabled: true
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+    template-loader-path: /pages/
+    request-context-attribute: ctx
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /static/**
+  web:
+    resources:
+      add-mappings: true
+      static-locations: /static
+
+web:
+  url:
+    static-list: /static/**,/assets/**
+    white-list: /error/**,/login,/logout,/front/login,/front/login/verify,/logout,/front/logout,/favicon.ico
+
+
+
+logging:
+  level:
+    com.cnscud.cavedemo: debug
+    com.cnscud.cavedemo.web.utils:info
+
+debug: false

@@ -14,7 +14,7 @@ public interface BlogService {
 
     public Blog queryBlog(int id);
 
-    public List<Blog> queryBlogs(int userId);
+    public List<Blog> queryBlogsByUser(int userId);
 
     public List<Blog> queryLatestBlogs(int limit);
 
