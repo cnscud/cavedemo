@@ -41,7 +41,7 @@
 
 						<!-- header logo -->
 						<a href="/" class="header__logo">
-							<img src="/static/img/logo.svg" alt="">
+							<img src="/static/img/logo.png" alt="">
 						</a>
 						<!-- end header logo -->
 
@@ -247,7 +247,7 @@
 
 						<div class="post__description">
 							<p><font style="vertical-align: inherit;">
-									${blog.content}
+									${blog.summary?truncate(20, '...')}
 								</font>
 							</p>
 							<a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">查看详情</font></font></a>
@@ -301,7 +301,7 @@
 									<a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.title} </font></font></a>
 									<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.createdAt?date}</font></font></span>
 								</div>
-								<p class="sidebox__job-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.content}
+								<p class="sidebox__job-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.summary?truncate(20, '...')}
 								</font></font></p>
 							</div>
 
@@ -326,7 +326,7 @@
 				<div class="col-12">
 					<div class="footer__content">
 						<a href="/" class="footer__logo">
-							<img src="/static/img/logo.svg" alt="">
+							<img src="/static/img/logo.png" alt="">
 						</a>
 
 						<span class="footer__copyright"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">©2021 </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="http://blog.cnscud.com/" target="_blank">由飞云开发</a></font></font></span>

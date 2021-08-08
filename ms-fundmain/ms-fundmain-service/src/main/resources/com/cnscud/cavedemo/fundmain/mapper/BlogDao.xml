@@ -6,12 +6,13 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, title, thumbnail, content, created_at, updated_at
+    id, user_id, title, thumbnail, summary, content, created_at, updated_at
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -38,10 +39,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cnscud.cavedemo.fundmain.model.Blog" useGeneratedKeys="true">
-    insert into blog (user_id, title, thumbnail, 
+    insert into blog (user_id, title, thumbnail, summary,
       content, created_at, updated_at
       )
-    values (#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR},
       #{content,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -56,6 +57,9 @@
       </if>
       <if test="thumbnail != null">
         thumbnail,
+      </if>
+      <if test="summary != null">
+        summary,
       </if>
       <if test="content != null">
         content,
@@ -76,6 +80,9 @@
       </if>
       <if test="thumbnail != null">
         #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
@@ -100,6 +107,9 @@
       <if test="thumbnail != null">
         thumbnail = #{thumbnail,jdbcType=VARCHAR},
       </if>
+      <if test="summary != null">
+        summary = #{summaryl,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
@@ -117,6 +127,7 @@
     set user_id = #{userId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}

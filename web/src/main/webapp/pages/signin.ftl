@@ -32,7 +32,7 @@
                     <!-- authorization form -->
                     <form action="#" class="sign__form">
                         <a href="index.html" class="sign__logo">
-                            <img src="/static/img/logo.jpg" alt="">
+                            <img src="/static/img/logo.png" alt="">
                         </a>
 
                         <div class="sign__group">
@@ -105,12 +105,5 @@
 </script>
 
 
-<div class="goog-te-spinner-pos">
-    <div class="goog-te-spinner-animation">
-        <svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66">
-            <circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-        </svg>
-    </div>
-</div>
 </body>
 </html>

@@ -22,6 +22,8 @@ public class Blog implements Serializable {
      */
     private String thumbnail;
 
+    private String summary;
+
     /**
      * 内容
      */
@@ -93,5 +95,13 @@ public class Blog implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
