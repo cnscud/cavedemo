@@ -1,4 +1,4 @@
-package com.cnscud.cavedemo.gateway;
+package com.cnscud.cavedemo.gateway.circuitbreaker;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

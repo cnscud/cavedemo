@@ -14,13 +14,18 @@
     
     限流测试: 使用PostMan  http://127.0.0.1:8900/fundmain/user/queryById?id=1000
 
+    异常测试:
+        根据accept 返回json格式:
+        curl 'http://127.0.0.1:8900/fundmain/abc/aaa?id=1000' --header 'Accept: application/json'
+
+    
 
 ## 特性
 * > 重试机制
 * > Fallback - 错误: 服务宕机 
 * > Fallback - 超时: 不设置缺省是1秒
 * > 限流: 可以用 RequestRateLimiter  
-* 异常处理?
+* > 异常处理
 * 错误过多: 未测试...
 
 ## Redis Rate Limiter
