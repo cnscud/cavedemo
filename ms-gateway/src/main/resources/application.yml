@@ -6,11 +6,18 @@ spring:
     name: ms-gateway
   main:
     allow-bean-definition-overriding: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
   cloud:
     zookeeper:
       connect-string: 127.0.0.1:2181
       discovery:
         enabled: true
+    loadbalancer:
+      ribbon:
+        enabled: false
     gateway:
       discovery:
         locator:
@@ -20,15 +27,25 @@ spring:
         - id: default
           uri: lb://ms-fundmain-service
           predicates:
-            - Path=/api/**
+            - Path=/fundmain/**
           filters:
             - StripPrefix=1
-    loadbalancer:
-      ribbon:
-        enabled: false
-
-
+            - name: CircuitBreaker
+              args:
+                name: fetchIngredients
+                fallbackUri: forward:/defaultfallback
+            - name: Retry
+              args:
+                retries: 2
+                series: SERVER_ERROR
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@ipKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 3
 
 logging:
   level:
-    org.springframework.cloud: debug
+    org.springframework.cloud: info
+    com.cnscud.cavedemo.gateway: debug
+

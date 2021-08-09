@@ -26,7 +26,7 @@
   
 * Feign + Rest: 如何更简洁优雅使用Feign服务?
 * 
-* 学习MyBatis事务配置?
+* MyBatis事务配置实践?
 * 优化数据库配置
 
 * 清理Maven依赖
@@ -55,7 +55,7 @@
 ## 应用启动顺序
     微服务 ms-fundmain-service
     网关 ms-gateway
-    消息消费 mqconsumer
+    消息消费 mqconsumer (可选)
     用户端 web
 
 
