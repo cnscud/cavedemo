@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Felix Zhang 2021-08-07 15:43
  * @version 1.0.0
  */
-@FeignClient(value = "ms-fundmain-service", contextId = "user")
-@RequestMapping("/user")
+@FeignClient(value = "ms-gateway", contextId = "user")
+@RequestMapping("/fundmain/user")
 public interface UserServiceClient {
 
     @RequestMapping("/queryById")

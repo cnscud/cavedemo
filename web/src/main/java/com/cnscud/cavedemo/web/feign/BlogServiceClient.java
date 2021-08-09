@@ -14,8 +14,10 @@ import java.util.List;
  * @author Felix Zhang 2021-08-07 15:55
  * @version 1.0.0
  */
-@FeignClient(value = "ms-fundmain-service", contextId = "blog")
-@RequestMapping("/blog")
+//@FeignClient(value = "ms-fundmain-service", contextId = "blog")
+//@RequestMapping("/blog")
+@FeignClient(value = "ms-gateway", contextId= "blog")
+@RequestMapping("/fundmain/blog")
 public interface BlogServiceClient  {
 
 
