@@ -41,8 +41,8 @@ Spring Cloud 脚手架
 
   	Zookeeper/Nacos 配置中心: XPower
   	Redis + Zookeeper? 封装动态配置 : XPower
-  	Kafka + Zookeeper? 封装动态配置 : 扩展XPower todo
-  	Mysql + Mybatis + Zookeeper    封装动态配置 todo
+  	Kafka + Zookeeper? 封装动态配置 : 扩展XPower
+  	Mysql + Mybatis + Zookeeper    封装动态配置
 
 
 

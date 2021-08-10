@@ -17,7 +17,6 @@ public class CodeMsgResponseUtils {
 
 
     public static Map<String, Object> getResultMap() {
-
         return new LinkedHashMap<String, Object>();
     }
 

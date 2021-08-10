@@ -10,7 +10,7 @@
 * > 用户登录授权
 * > 模版: Freemarker支持
 * > 页面渲染: 用户, 博客内容  
-* 使用网关: 熔断 降级?  
+* > 集成网关: 熔断 降级等网关特性  
 
 * 前端相关: Vue/React, 以及打包
 
@@ -22,23 +22,26 @@
 * > jackson: 日期配置 序列化
 * > Logo生成网站
 * > Mybatis 支持多数据源:
-* Exception Handler
+* > Web Exception Handler
   
+
 * Feign + Rest: 如何更简洁优雅使用Feign服务?
 * 
 * MyBatis事务配置实践?
 * 优化数据库配置
 
-* 清理Maven依赖
-* 文档: 环境准备
-* 数据: 整理到文件
 
+* 清理Maven依赖
+* 工具类: 放在什么地方合适
+* 文档: 环境准备
+* 数据: 整理数据文件
 
 
 ## 相关工具
     代码生成:  Free Mybatis Plugin (Idea) 或 Mybatis Generate (Maven插件)
     Zookeeper本地GUI工具:  PrettyZoo https://zhuanlan.zhihu.com/p/353163620
     Redis 桌面: https://github.com/qishibo/AnotherRedisDesktopManager/releases
+    Logo网站: https://www.designevo.com/cn/logo-maker/
     
 ## 运行环境准备
     启动Zookeeper, 如果不是本机, 则设置"ZK_HOSTS"环境变量

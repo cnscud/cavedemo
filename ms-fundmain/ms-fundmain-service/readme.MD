@@ -14,3 +14,5 @@
    数据库: http://127.0.0.1:9001/user/queryBlogs?id=1001
    ZK: http://127.0.0.1:9001/zk/test
    Redis: http://127.0.0.1:9001/redis/test
+   
+   异常统一处理: http://127.0.0.1:9001/exception/must

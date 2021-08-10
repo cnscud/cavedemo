@@ -10,42 +10,15 @@ import java.util.Map;
 //@Component
 public class GlobalErrorAttributes extends DefaultErrorAttributes{
 
-    private HttpStatus status = HttpStatus.BAD_REQUEST;
-    private String message = "please provide a name";
-
     @Override
     public Map<String, Object> getErrorAttributes(ServerRequest request, ErrorAttributeOptions options) {
+        Throwable error = super.getError(request);
+
         Map<String, Object> map = super.getErrorAttributes(request, options);
-        map.put("status", getStatus());
-        map.put("message", getMessage());
+        map.put("status", HttpStatus.BAD_REQUEST.value());
+        map.put("message", error.getMessage());
         return map;
     }
 
-    /**
-     * @return the status
-     */
-    public HttpStatus getStatus() {
-        return status;
-    }
 
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(HttpStatus status) {
-        this.status = status;
-    }
-
-    /**
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * @param message the message to set
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
