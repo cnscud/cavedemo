@@ -41,8 +41,11 @@ public class IndexController {
         User user = (User) request.getAttribute(MsgConstants.CURRENT_USER_ATTRIBUTE);
         if(user !=null){
             model.addAttribute("user", user);
+
+            return "redirect:/home";
         }
-        return "/index";
+
+        return "redirect:/login";
     }
 
 

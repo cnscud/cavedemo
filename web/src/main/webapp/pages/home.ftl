@@ -22,7 +22,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>Home</title>
+	<title>${user.name!} - Home</title>
 
 <body>
 	<!-- header -->
