@@ -29,7 +29,7 @@ public class ExceptionControllerAdvice {
         return map;
     }
 
-    //可以针对各种异常定制错误信息...
+    //可以针对各种异常定制错误信息... 特别是数据库异常 要避免泄露SQL
 
 
 }

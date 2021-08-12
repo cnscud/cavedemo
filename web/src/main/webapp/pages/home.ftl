@@ -247,7 +247,7 @@
 
 						<div class="post__description">
 							<p><font style="vertical-align: inherit;">
-									${blog.summary?truncate(20, '...')}
+									${blog.summary?truncate(60, '...')}
 								</font>
 							</p>
 							<a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">查看详情</font></font></a>
@@ -298,10 +298,10 @@
 							<#list latestblogs as lblog>
 							<div class="sidebox__job">
 								<div class="sidebox__job-title">
-									<a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.title} </font></font></a>
-									<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.createdAt?date}</font></font></span>
+									<a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.title?truncate(20, '...')} </font></font></a>
+									<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.createdAt?string("MM-dd")}</font></font></span>
 								</div>
-								<p class="sidebox__job-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.summary?truncate(20, '...')}
+								<p class="sidebox__job-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${lblog.summary?truncate(30, '...')}
 								</font></font></p>
 							</div>
 

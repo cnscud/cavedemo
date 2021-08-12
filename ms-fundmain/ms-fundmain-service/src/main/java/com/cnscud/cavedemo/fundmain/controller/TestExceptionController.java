@@ -1,10 +1,12 @@
 package com.cnscud.cavedemo.fundmain.controller;
 
+
 import org.apache.commons.lang.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +26,7 @@ public class TestExceptionController {
     public String randomException(HttpServletRequest request) throws Exception{
 
         request.getParameterMap();
+
 
         int a = RandomUtils.nextInt(3);
         if(a == 1){

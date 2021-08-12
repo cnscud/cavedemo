@@ -3,16 +3,16 @@
 ## 涵盖功能:
 * > 使用Zookeeper作为注册中心
 * > 数据库操作MyBatis
-* > 自定义配置: Zookeeper
+* > @自定义配置: Zookeeper
 * > 缓存操作 Redis  
 * > 队列操作 Kafka: Producer, Consumer
-* > MyBatis配置存到Zookeeper, 支持动态修改数据库
-* > 用户登录授权
+* > @@@ MyBatis配置存到Zookeeper, 支持动态修改数据库
+* > @用户登录授权
 * > 模版: Freemarker支持
 * > 页面渲染: 用户, 博客内容  
-* > 集成网关: 熔断 降级等网关特性  
+* > @@@ 集成网关: 熔断 降级等网关特性  
 
-* 前端相关: Vue/React, 以及打包
+* (未包含)前端相关: React/Vue, 以及打包
 
 
 
@@ -23,19 +23,15 @@
 * > Logo生成网站
 * > Mybatis 支持多数据源:
 * > Web Exception Handler
-  
-
-* Feign + Rest: 如何更简洁优雅使用Feign服务?
-* 
 * MyBatis事务配置实践?
-* 优化数据库配置
-
-
-* 清理Maven依赖
 * 工具类: 放在什么地方合适
-* 文档: 环境准备
-* 数据: 整理数据文件
+* > 文档: 环境准备
+* > 数据: 整理数据文件, 让页面看起来有内容.
 
+可优化点
+* 配置 redis-rate-limiter, redis地址放在Zookeeper里
+* JWT服务应该放在微服务里?
+* Feign + Rest: 如何更简洁优雅使用Feign服务?
 
 ## 相关工具
     代码生成:  Free Mybatis Plugin (Idea) 或 Mybatis Generate (Maven插件)
@@ -44,16 +40,28 @@
     Logo网站: https://www.designevo.com/cn/logo-maker/
     
 ## 运行环境准备
-    启动Zookeeper, 如果不是本机, 则设置"ZK_HOSTS"环境变量
+    1. 启动Zookeeper, 如果不是本机, 则设置"ZK_HOSTS"环境变量
+        配置举例: ZK_HOSTS=127.0.0.1:2181
 
-    普通Mysql示例, 请修改application.yml里面相关的数据库配置
-    配置中心版Mysql示例, 如果不是本机, 需要修改zookeeper配置
+    2. 启动Mysql & 配置
+    (已移除)普通Mysql示例, 请修改application.yml里面相关的数据库配置
+    配置中心版Mysql配置: mysql.cavedemo.conf , 如果不是本机, 需要修改zookeeper配置
+
     导入用户和数据: config/mysql
+        scheme.sql: 创建用户和Database
+        cavedemo.sql: 演示数据
 
-    启动Redis, 参见config/zookeeper/redis* , 如果不一致请修改配置文件
-    启动Kafka, 如果不是本机请修改zookeeper配置
+    3. 启动Redis 
+        参见config/zookeeper/redis* , 如果不一致请修改配置文件
+        使用redis的 utils/create-cluster 可以快速创建一个cluster
 
-    导入更新后的数据: config/zookeeper
+        本项目: redis://127.0.0.1:6580 redis://127.0.0.1:6581 redis://127.0.0.1:6582
+
+    4. 启动Kafka, 如果不是本机请修改zookeeper配置
+        127.0.0.1:9092
+
+    5. 导入更新后的数据: config/zookeeper
+        查看并运行 init.sh 导入zookeeper配置
 
 ## 应用启动顺序
     微服务 ms-fundmain-service
