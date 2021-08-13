@@ -3,7 +3,7 @@ package com.cnscud.cavedemo.web.controller;
 import com.cnscud.cavedemo.fundmain.model.Blog;
 import com.cnscud.cavedemo.fundmain.model.User;
 import com.cnscud.cavedemo.web.MsgConstants;
-import com.cnscud.cavedemo.web.feign.BlogServiceClient;
+import com.cnscud.cavedemo.web.feignclient.BlogServiceClient;
 import com.cnscud.cavedemo.web.helper.LoginRequired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,10 +1,7 @@
 package com.cnscud.cavedemo.web;
 
-import com.cnscud.cavedemo.web.utils.JWTUtils;
-import com.cnscud.xpower.cache.IRedisCluster;
-import com.cnscud.xpower.cache.impl.RedisClusterAutoConfigCacheFactory;
+import com.cnscud.cavedemo.web.helper.JWTHelper;
 import com.cnscud.xpower.utils.Md5;
-import com.cnscud.xpower.utils.XBase64Utils;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,6 +32,6 @@ public class UserSignTest   {
 
         System.out.println(Md5.crypt(MsgConstants.saltPrefix + salt + password));
 
-        JWTUtils.signout(1000);
+        JWTHelper.signout(1000);
     }
 }

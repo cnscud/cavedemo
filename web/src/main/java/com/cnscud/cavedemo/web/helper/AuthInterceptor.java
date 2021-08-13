@@ -3,8 +3,7 @@ package com.cnscud.cavedemo.web.helper;
 
 import com.cnscud.cavedemo.fundmain.model.User;
 import com.cnscud.cavedemo.web.MsgConstants;
-import com.cnscud.cavedemo.web.feign.UserServiceClient;
-import com.cnscud.cavedemo.web.utils.JWTUtils;
+import com.cnscud.cavedemo.web.feignclient.UserServiceClient;
 import com.cnscud.cavedemo.web.utils.web.RequestUtils;
 import com.cnscud.xpower.utils.CookieUtils;
 
@@ -140,8 +139,8 @@ public class AuthInterceptor implements HandlerInterceptor, Ordered {
             return false;
         }
         String token = loginCookie.getValue();
-        int userid = JWTUtils.getUserid(token);
-        boolean verified = JWTUtils.verify(token, userid, JWTUtils.getAccessLevel(token));
+        int userid = JWTHelper.getUserid(token);
+        boolean verified = JWTHelper.verify(token);
         if (!verified) {
             //删除错误cookie
             CookieUtils.deleteCookie(response, loginCookie, MsgConstants.Cookie_Domain, MsgConstants.Cookie_Path);

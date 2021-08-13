@@ -1,4 +1,4 @@
-package com.cnscud.cavedemo.web.utils;
+package com.cnscud.cavedemo.web.helper;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -19,14 +19,15 @@ import org.slf4j.LoggerFactory;
 
 /**
  * JWT Utils.
+ * 可以考虑移动到服务里.
  *
  * @author Felix Zhang 2021-08-06 20:15
  * @version 1.0.0
  */
 @Component
-public class JWTUtils {
+public class JWTHelper {
 
-    static Logger logger = LoggerFactory.getLogger(JWTUtils.class);
+    static Logger logger = LoggerFactory.getLogger(JWTHelper.class);
     static IRedisCluster rediscluster = RedisClusterAutoConfigCacheFactory.getInstance().getCache("redis.cluster.test");
 
 
@@ -79,8 +80,11 @@ public class JWTUtils {
      * @param token 密钥
      * @return 是否正确
      */
-    public static boolean verify(String token, int userid, String access_level) {
+    public static boolean verify(String token) {
         try {
+
+            int userid = JWTHelper.getUserid(token);
+            String access_level = getAccessLevel(token);
 
             String userJwtSecretKey = redisKey4UserId(userid);
 

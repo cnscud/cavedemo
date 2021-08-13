@@ -2,10 +2,10 @@ package com.cnscud.cavedemo.web.controller;
 
 import com.cnscud.cavedemo.fundmain.model.User;
 import com.cnscud.cavedemo.web.MsgConstants;
-import com.cnscud.cavedemo.web.feign.UserServiceClient;
-import com.cnscud.cavedemo.web.utils.CodeMsgResponseUtils;
-import com.cnscud.cavedemo.web.utils.JWTUtils;
-import com.cnscud.cavedemo.web.utils.UserLoginUtils;
+import com.cnscud.cavedemo.web.feignclient.UserServiceClient;
+import com.cnscud.cavedemo.web.utils.common.CodeMsgResponseUtils;
+import com.cnscud.cavedemo.web.helper.JWTHelper;
+import com.cnscud.cavedemo.web.helper.UserLoginUtils;
 import com.cnscud.cavedemo.web.utils.web.RequestUtils;
 import com.cnscud.xpower.utils.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +54,7 @@ public class SignController {
         }
 
         //生成token
-        String token = JWTUtils.sign(user.getId(), MsgConstants.Token_Level);
+        String token = JWTHelper.sign(user.getId(), MsgConstants.Token_Level);
 
         //设置cookie
         CookieUtils.setCookie(response, MsgConstants.Cookie_LoginToken, token, MsgConstants.Cookie_Domain, MsgConstants.Cookie_Path, MsgConstants.EXPIRE_TIME);
@@ -70,7 +70,7 @@ public class SignController {
         User user = (User) request.getAttribute(MsgConstants.CURRENT_USER_ATTRIBUTE);
         if (user != null) {
 
-            JWTUtils.signout(user.getId());
+            JWTHelper.signout(user.getId());
 
             CookieUtils.deleteCookie(response, CookieUtils.getCookie(request, MsgConstants.Cookie_LoginToken), MsgConstants.Cookie_Domain, MsgConstants.Cookie_Path);
         }

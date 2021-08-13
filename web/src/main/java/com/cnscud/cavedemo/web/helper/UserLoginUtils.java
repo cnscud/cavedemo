@@ -1,4 +1,4 @@
-package com.cnscud.cavedemo.web.utils;
+package com.cnscud.cavedemo.web.helper;
 
 import com.cnscud.cavedemo.web.MsgConstants;
 import com.cnscud.xpower.utils.Md5;

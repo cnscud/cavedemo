@@ -1,7 +1,6 @@
-package com.cnscud.cavedemo.web.feign;
+package com.cnscud.cavedemo.web.feignclient;
 
 import com.cnscud.cavedemo.fundmain.model.Blog;
-import com.cnscud.cavedemo.fundmain.service.BlogService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

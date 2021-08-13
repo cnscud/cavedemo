@@ -1,4 +1,4 @@
-package com.cnscud.cavedemo.web.utils;
+package com.cnscud.cavedemo.web.utils.common;
 
 
 import com.cnscud.cavedemo.web.MsgConstants;
