@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-//Spring 默认的就很好了.
+//Spring 默认的就很好了, 此处仅为演示.
 @Component
 public class GatewayErrorAttributes extends DefaultErrorAttributes {
 

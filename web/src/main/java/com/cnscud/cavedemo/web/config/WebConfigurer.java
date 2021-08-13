@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 
+ * 全局拦截器声明: 拦截用户权限等.
  * @author adyliu (imxylz@gmail.com)
  * @since 2019-09-25
  */
@@ -19,7 +19,7 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Autowired
     private AuthInterceptor authInterceptor;
-    
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor).addPathPatterns("/**").excludePathPatterns("/login");

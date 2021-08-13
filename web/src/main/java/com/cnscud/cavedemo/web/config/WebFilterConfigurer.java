@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configurer.
+ * 声明全局Filter.
  *
  * @author Felix Zhang 2021-08-07 21:14
  * @version 1.0.0

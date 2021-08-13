@@ -5,7 +5,7 @@
 ## 涵盖功能:
 * > 使用Zookeeper作为注册中心
 * > 数据库操作MyBatis
-* > @自定义配置: Zookeeper
+* > @自定义配置中心: Zookeeper
 * > 缓存操作 Redis  
 * > 队列操作 Kafka: Producer, Consumer
 * > @@@ MyBatis配置存到Zookeeper, 支持动态修改数据库
@@ -14,7 +14,7 @@
 * > @@@ 集成网关: 熔断 降级等网关特性  
 
 
-## Todo
+## Todo 记录
 * > Freemarker: substring
 * > jackson: 日期配置 序列化
 * > Logo生成网站
@@ -33,8 +33,16 @@
 * JWT服务应该放在微服务里?
 * Feign + Rest: 如何更简洁优雅使用Feign服务?
 * 前端相关: 引入React/Vue, 以及前端打包
-* 如果多个WEB项目, 工具类提取到公用模块
+* 如果多个WEB项目, 工具类(Utils, Helper)提取到公用模块
 
+## 模块说明
+    cavedemo-root: 依赖管理
+    ms-fundmain
+        ms-fundmain-base: 基础服务 - 原型模块
+        ms-fundmain-service: 基础服务 - 微服务实现
+    mq-consumers 消息消费
+    ms-gateway 网关
+    web 用户WEB
 
 
 ## 相关工具
@@ -61,14 +69,14 @@
 
         本项目: redis://127.0.0.1:6580 redis://127.0.0.1:6581 redis://127.0.0.1:6582
 
-    4. (可选)启动Kafka, 如果不是本机请修改zookeeper配置
+    4. (可选) 启动Kafka, 如果不是本机请修改zookeeper配置
         127.0.0.1:9092
 
     5. 导入更新后的数据: config/zookeeper
         查看并运行 init.sh 导入zookeeper配置
 
     6. 配置域名
-        因为使用Cookie保存用户信息, 设置域名为 demo.cnscud.com , 需要自己配置hosts
+        因为使用Cookie保存用户信息, 可以设置域名为 demo.cnscud.com , 需要自己配置hosts
 
 ## 应用启动顺序
     (准备好环境)

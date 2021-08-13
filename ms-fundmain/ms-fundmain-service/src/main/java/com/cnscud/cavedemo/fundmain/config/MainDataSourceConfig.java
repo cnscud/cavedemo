@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 
 /**
  * Database Config 多数据源配置: 主数据源.
+ * 数据源动态从Zookeeper创建/更新.
  *
  * @author Felix Zhang 2021-08-02 17:30
  * @version 1.0.0

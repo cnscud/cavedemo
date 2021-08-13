@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 读取Zookeeper 配置.
+ * 读取Zookeeper 配置, 作为配置中心.
  *
  * @author Felix Zhang 2021-08-03 11:17
  * @version 1.0.0

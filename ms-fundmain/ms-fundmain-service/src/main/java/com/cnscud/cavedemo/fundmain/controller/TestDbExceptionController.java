@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 /**
- * 数据库异常.
+ * 数据库异常+事务.
  *
  * @author Felix Zhang 2021-08-13 10:34
  * @version 1.0.0

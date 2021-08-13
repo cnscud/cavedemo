@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableTransactionManagement
-//@MapperScan(basePackages = {"com.cnscud.cavedemo.fundmain.dao"})
 public class FundMainApplication {
     public static void main(String[] args) {
         SpringApplication.run(FundMainApplication.class, args);
