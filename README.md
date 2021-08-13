@@ -10,7 +10,7 @@
 * > 队列操作 Kafka: Producer, Consumer
 * > @@@ MyBatis配置存到Zookeeper, 支持动态修改数据库
 * > @用户登录授权: 使用JWT, Cookie
-* > 模版渲染: Freemarker支持
+* > 模版渲染: Freemarker支持, 适合做SEO.
 * > @@@ 集成网关: 熔断 降级等网关特性  
 
 
@@ -29,11 +29,11 @@
 ## 可优化点
 * 为了演示方便, 可以引入docker-compose构建?
 * 配置 redis-rate-limiter, redis地址放在Zookeeper里
-
 * JWT服务应该放在微服务里?
 * Feign + Rest: 如何更简洁优雅使用Feign服务?
 * 前端相关: 引入React/Vue, 以及前端打包
 * 如果多个WEB项目, 工具类(Utils, Helper)提取到公用模块
+
 
 ## 模块说明
     cavedemo-root: 依赖管理
