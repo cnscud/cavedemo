@@ -8,7 +8,7 @@ spring:
     name: cavedemo-web
   cloud:
     zookeeper:
-      connect-string: 127.0.0.1:2181
+      connect-string: ${ZK_HOSTS:127.0.0.1:2181}
       discovery:
         enabled: true
   freemarker:
@@ -52,6 +52,7 @@ web:
   url:
     static-list: /static/**,/assets/**
     white-list: /error/**,/login,/logout,/front/login,/front/login/verify,/logout,/front/logout,/favicon.ico
+
 
 
 

@@ -12,7 +12,7 @@ spring:
     database: 0
   cloud:
     zookeeper:
-      connect-string: 127.0.0.1:2181
+      connect-string: ${ZK_HOSTS:127.0.0.1:2181}
       discovery:
         enabled: true
     loadbalancer:
