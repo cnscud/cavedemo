@@ -1,7 +1,6 @@
 # 脚手架
-* 此项目是一个基于Spring Cloud 2020版本的快速脚手架, 用于公司搭建项目. 不包含前端部分.
+* 此项目是一个基于Spring Cloud 2020版本的快速脚手架, 使用了微服务和网关, 用于中小公司搭建项目. 
 * 使用了Spring Cloud Gateway, Mybatis, Zookeeper, Freemarker, Redis, Kafka, JWT等技术.
-
 
 ## 涵盖功能:
 * > 使用Zookeeper作为注册中心
