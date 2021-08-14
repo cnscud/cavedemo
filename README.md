@@ -83,7 +83,7 @@
     微服务 ms-fundmain-service
     网关 ms-gateway
     消息消费 mqconsumer (可选)
-    用户端 web
+    用户端 web : 调试方式启动 spring-boot:run -Dspring-boot.run.fork=false
 
     访问: http://demo.cnscud.com:8000/
 
