@@ -33,3 +33,10 @@
     redis-rate-limiter.burstCapacity: 20     这个参数表示突发容量,即每秒可以最大通过多少次请求
     redis-rate-limiter.replenishRate: 5      这个是令牌桶的补充速度，每秒往桶里边放几个令牌
     key-resolver: ‘#{@ipKeyResolver}’        这个就是用上KeyResolver的具体实现了，这里用spel表达式指定我写的那个ip限制类
+
+
+## Todo
+    > 定制429的返回Response: https://juejin.cn/post/6933172840938078215
+    > 输出DefaultFallback的Status Code: 参加DefaultFallback实现
+    > Fallback: Status Code ? 404?
+    问题: Timeout: and no fallback has been configured?

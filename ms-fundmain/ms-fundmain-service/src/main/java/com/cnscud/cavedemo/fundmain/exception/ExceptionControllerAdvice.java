@@ -23,7 +23,7 @@ public class ExceptionControllerAdvice {
      * 全局异常捕捉处理
      */
     @ResponseBody
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus
     @ExceptionHandler(value = Exception.class)
     public Map<String, Object> errorHandler(Exception ex, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();

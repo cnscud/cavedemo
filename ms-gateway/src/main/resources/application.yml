@@ -15,6 +15,7 @@ spring:
       connect-string: ${ZK_HOSTS:127.0.0.1:2181}
       discovery:
         enabled: true
+        preferIpAddress: true
     loadbalancer:
       ribbon:
         enabled: false
@@ -34,6 +35,9 @@ spring:
               args:
                 name: fetchIngredients
                 fallbackUri: forward:/defaultfallback
+                statusCodes:
+                  - 500
+                  - 404
             - name: Retry
               args:
                 retries: 2
