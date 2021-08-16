@@ -1,8 +1,10 @@
 package com.cnscud.cavedemo.fundmain.exception;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ public class ExceptionControllerAdvice {
      * 全局异常捕捉处理
      */
     @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
     public Map<String, Object> errorHandler(Exception ex, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();

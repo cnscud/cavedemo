@@ -10,8 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,11 +35,14 @@ public class HttpErrorController extends AbstractErrorController {
     }
 
     @RequestMapping(path = ERROR_PATH)
-    public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> error(HttpServletRequest request, HttpServletResponse response) {
         HttpStatus status = getStatus(request);
         if (status == HttpStatus.NO_CONTENT) {
             return new ResponseEntity<>(status);
         }
+        //set status code for http
+        response.setStatus(status.value());
+
         Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions(request, MediaType.ALL));
         return new ResponseEntity<>(body, status);
     }
@@ -49,11 +50,14 @@ public class HttpErrorController extends AbstractErrorController {
 
     //@ResponseBody
     //@RequestMapping(path = ERROR_PATH)
+    /*
     public Map<String, Object> error(HttpServletRequest request, HttpServletResponse response) {
 
         WebRequest webRequest = new ServletWebRequest(request);
         return errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults());
     }
+    */
+
 
 
     protected ErrorAttributeOptions getErrorAttributeOptions(HttpServletRequest request, MediaType mediaType) {

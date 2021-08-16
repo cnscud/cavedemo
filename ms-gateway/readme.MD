@@ -9,6 +9,7 @@
     停止微服务, 既可以看到fallback特性
 
     异常重试: http://127.0.0.1:8900/fundmain/exception/random
+    异常重试: http://127.0.0.1:8900/fundmain/exception/must
     超时设置: http://127.0.0.1:8900/fundmain/exception/longtimeout
     超时设置: http://127.0.0.1:8900/fundmain/exception/smalltimeout
     
