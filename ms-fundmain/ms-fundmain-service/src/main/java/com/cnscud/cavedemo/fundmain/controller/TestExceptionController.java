@@ -42,7 +42,9 @@ public class TestExceptionController {
 
     @RequestMapping("/must")
     public String mustException(HttpServletRequest request) throws Exception{
-            throw new Exception("Must Exception");
+        logger.warn("must: throw a Exception!");
+
+        throw new Exception("Must Exception");
     }
 
     @RequestMapping("/longtimeout")
