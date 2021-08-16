@@ -48,6 +48,8 @@ public class DefaultFallback {
         ServerWebExchange delegate = ((ServerWebExchangeDecorator) exchange).getDelegate();
         logger.error("服务调用失败，URL={}", delegate.getRequest().getURI(), exception);
 
+
+
         result.put("uri", delegate.getRequest().getURI());
 
         if (exception instanceof TimeoutException) {

@@ -37,7 +37,7 @@ spring:
                 fallbackUri: forward:/defaultfallback
                 statusCodes:
                   - 500
-                  - 404
+                  - "NOT_FOUND"
             - name: Retry
               args:
                 retries: 2
@@ -58,6 +58,18 @@ spring:
               args:
                 name: fetchIngredients
                 fallbackUri: forward:/externalfallback
+                statusCodes:
+                  - 500
+                  - "NOT_FOUND"
+            - name: Retry
+              args:
+                retries: 2
+                series: SERVER_ERROR
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@ipKeyResolver}'
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 30
 
         - id: ingredients-fallback
           uri: lb://ms-fundmain-service

@@ -25,6 +25,7 @@
 * > 重试机制
 * > Fallback - 错误: 服务宕机 
 * > Fallback - 超时: 不设置缺省是1秒
+* > Fallback - 指定 statusCodes 才能捕获, 否则只捕获网关的Exception  
 * > 限流: 可以用 RequestRateLimiter  
 * > 异常处理
 * 错误过多: 未测试...
@@ -35,8 +36,15 @@
     key-resolver: ‘#{@ipKeyResolver}’        这个就是用上KeyResolver的具体实现了，这里用spel表达式指定我写的那个ip限制类
 
 
-## Todo
-    > 定制429的返回Response: https://juejin.cn/post/6933172840938078215
-    > 输出DefaultFallback的Status Code: 参加DefaultFallback实现
-    > Fallback: Status Code ? 404??
+## 网关文档
+    https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#spring-cloud-circuitbreaker-filter-factory
+
+## Todo 
+    OK > 定制429的返回Response: https://juejin.cn/post/6933172840938078215
+    OK > 输出DefaultFallback的Status Code: DefaultFallback已实现
+    问题: Fallback: Status Code ? 404不行, NOT_FOUND可以!!??
     问题: Timeout: and no fallback has been configured?
+    问题: 如果获取被代理的请求的Response?
+
+
+## 类名 SpringCloudCircuitBreakerResilience4JFilterFactory    
