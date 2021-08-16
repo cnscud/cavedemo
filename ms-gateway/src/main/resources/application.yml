@@ -48,6 +48,27 @@ spring:
                 redis-rate-limiter.replenishRate: 10
                 redis-rate-limiter.burstCapacity: 30
 
+        - id: testoutsidefallback
+          uri: lb://ms-fundmain-service
+          predicates:
+            - Path=/fundmain2/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: fetchIngredients
+                fallbackUri: forward:/externalfallback
+
+        - id: ingredients-fallback
+          uri: lb://ms-fundmain-service
+          predicates:
+            - Path=/externalfallback
+          filters:
+            - name: FallbackHeaders
+              args:
+                executionExceptionTypeHeaderName: Exception-Type
+                executionExceptionMessageHeaderName: Exception-Message
+
 logging:
   level:
     org.springframework.cloud: info
