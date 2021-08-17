@@ -42,9 +42,10 @@
 ## Todo 
     OK > 定制429的返回Response: https://juejin.cn/post/6933172840938078215
     OK > 输出DefaultFallback的Status Code: DefaultFallback已实现
+    OK 如果获取被代理的请求的Response? -- 可以获取 Status, 其他没内容(否则网关的内存会被爆), 所以可以不拦截微服务的错误, 而在微服务侧做好错误处理
+    OK 参考文章 Cache Response: https://stackoverflow.com/questions/65498001/spring-cloud-gateway-with-spring-cache-and-caffeine
     问题: Fallback: Status Code ? 404不行, NOT_FOUND可以!!??
     问题: Timeout: and no fallback has been configured?
-    问题: 如果获取被代理的请求的Response?
 
 
 ## 类名 SpringCloudCircuitBreakerResilience4JFilterFactory    

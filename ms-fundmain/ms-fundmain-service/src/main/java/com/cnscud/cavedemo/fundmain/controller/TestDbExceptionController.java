@@ -2,6 +2,8 @@ package com.cnscud.cavedemo.fundmain.controller;
 
 import com.cnscud.cavedemo.fundmain.model.User;
 import com.cnscud.cavedemo.fundmain.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +22,17 @@ import java.util.Date;
 @Transactional
 public class TestDbExceptionController {
 
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private UserService userService;
 
 
     @RequestMapping("/adduser")
     public String addUserWithException(){
+
+        logger.warn("call add User with Exception!");
+
         User user = new User();
         user.setUsername("test");
         user.setName("Test");

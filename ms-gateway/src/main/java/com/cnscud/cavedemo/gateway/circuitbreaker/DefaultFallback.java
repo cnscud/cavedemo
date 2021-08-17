@@ -3,6 +3,7 @@ package com.cnscud.cavedemo.gateway.circuitbreaker;
 import com.cnscud.cavedemo.gateway.exceptionhandler.GatewayErrorAttributes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.gateway.filter.factory.SpringCloudCircuitBreakerFilterFactory;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.cloud.gateway.support.TimeoutException;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class DefaultFallback {
     }
 
     @RequestMapping(value = "/defaultfallback")
-    @ResponseStatus
+    //@ResponseStatus
     public Mono<Map<String, Object>> fallback(ServerWebExchange exchange) {
         Map<String, Object> result = new HashMap<>(4);
         result.put("code", 5001);
@@ -48,7 +49,14 @@ public class DefaultFallback {
         ServerWebExchange delegate = ((ServerWebExchangeDecorator) exchange).getDelegate();
         logger.error("服务调用失败，URL={}", delegate.getRequest().getURI(), exception);
 
+        //只有 Status, 没有Response
+        if(exception instanceof SpringCloudCircuitBreakerFilterFactory.CircuitBreakerStatusCodeException){
+            int statusCode = ((SpringCloudCircuitBreakerFilterFactory.CircuitBreakerStatusCodeException) exception).getRawStatusCode();
+            result.put("status", statusCode);
 
+            //设置回原来的Status Code
+            exchange.getResponse().setStatusCode(HttpStatus.resolve(statusCode));
+        }
 
         result.put("uri", delegate.getRequest().getURI());
 
