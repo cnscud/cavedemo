@@ -31,6 +31,15 @@
         <httpclient.version>4.5.2</httpclient.version>
         <httpcore.version>4.4.13</httpcore.version>
 
+
+        <docker.plugin.version>0.36.1</docker.plugin.version>
+
+        <docker.host>http://127.0.0.1:2375</docker.host>
+        <docker.registry>127.0.0.1:5000</docker.registry>
+        <docker.namespace>cnscud-cavedemo</docker.namespace>
+        <docker.username>cnscud</docker.username>
+        <docker.password>123456</docker.password>
+
     </properties>
 
 
@@ -423,4 +432,74 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+
+
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+
+
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <!-- 启用分层打包支持 -->
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                    <configuration>
+                        <!-- Docker Remote Api-->
+                        <!-- 本机则可以注释掉, 如果没有监听2375端口 -->
+                        <dockerHost>${docker.host}</dockerHost>
+                        <!-- Docker 镜像私服-->
+                        <registry>${docker.registry}</registry>
+                        <!-- 认证信息, 没有设置则注释掉 -->
+                        <authConfig>
+                            <push>
+                                <username>${docker.username}</username>
+                                <password>${docker.password}</password>
+                            </push>
+                        </authConfig>
+
+                        <images>
+                            <image>
+                                <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
+                                <build>
+                                    <dockerFileDir>${project.basedir}</dockerFileDir>
+                                </build>
+                            </image>
+                        </images>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

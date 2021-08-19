@@ -18,3 +18,13 @@
    队列: http://127.0.0.1:9001/mq/visituser (消费者会同时收到一条消息)
    
    异常统一处理: http://127.0.0.1:9001/exception/must
+
+## docker 命令
+   构建: mvn clean package docker:build
+   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 127.0.0.1:5000/cnscud/ms-fundmain-service:1.0-SNAPSHOT
+   停止: docker stop msfs
+   删除: docker rm msfs
+
+
+
+

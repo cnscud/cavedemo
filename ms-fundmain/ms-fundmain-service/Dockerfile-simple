@@ -1,0 +1,21 @@
+# 此文件是不分层构建的 Dockerfile
+
+# 该镜像需要依赖的基础镜像
+FROM java:8
+
+# 将当前maven目录生成的jar文件复制到docker容器的/目录下
+# 可能依赖环境, 经常报错? 原因待查
+# COPY maven /
+
+# 复制jar
+ADD /target/ms-fundmain-service-1.0-SNAPSHOT.jar app.jar
+# 声明服务运行的端口(仅仅是声明, 需要自己绑定, 或者在docker-compose里指定)
+EXPOSE 9001
+
+ENV TZ="Asia/Shanghai"
+
+# 指定docker容器启动时运行jar包
+ENTRYPOINT ["java", "-jar","/app.jar"]
+# 指定维护者的名字
+MAINTAINER cnscud
+
