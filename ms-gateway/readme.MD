@@ -49,3 +49,16 @@
 
 
 ## 类名 SpringCloudCircuitBreakerResilience4JFilterFactory    
+
+## docker 命令
+
+  Maven构建: mvn clean package docker:build
+
+  手工构建: docker build -t cnscud/cavedemo/ms-gateway:v1.0.0 .
+
+  运行: docker run --name msgateway -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 cnscud/cavedemo/ms-gateway:v1.0.0
+
+  运行: docker run --name msgateway -p 8900:8900 -d  --env ZK_HOSTS=cd-zk1.cnscud.com:2181 cnscud/cavedemo/ms-gateway:v1.0.0
+
+  停止: docker stop msgateway
+  删除: docker rm msgateway

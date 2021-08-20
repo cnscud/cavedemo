@@ -51,7 +51,7 @@
     Redis 桌面: https://github.com/qishibo/AnotherRedisDesktopManager/releases
     Logo网站: https://www.designevo.com/cn/logo-maker/
     
-## 运行环境准备
+## 运行环境准备: ---本机运行
     1. 启动Zookeeper, 如果不是本机, 则设置"ZK_HOSTS"环境变量
         配置举例: ZK_HOSTS=127.0.0.1:2181
 
@@ -77,6 +77,23 @@
 
     6. 配置域名
         因为使用Cookie保存用户信息, 可以设置域名为 demo.cnscud.com , 需要自己配置hosts
+
+    7. 用域名配置,方便docker环境和本地环境, 以及团队环境一致
+
+        以下是本机配置的方式:
+
+        # zookeeper
+        127.0.0.1 cd-zk1.cnscud.com
+        # mysql
+        127.0.0.1 cd-db1.cnscud.com
+        # kafka
+        127.0.0.1 cd-mq1.cnscud.com
+        # redis
+        127.0.0.1 cd-rd1.cnscud.com
+        # web
+        127.0.0.1 demo.cnscud.com
+        
+
 
 ## 应用启动顺序
     (准备好环境)

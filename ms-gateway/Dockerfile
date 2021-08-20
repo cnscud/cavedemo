@@ -22,6 +22,6 @@ COPY --from=builder /application/snapshot-dependencies/ ./
 COPY --from=builder /application/spring-boot-loader/ ./
 COPY --from=builder /application/application/ ./
 
-EXPOSE 9001
+EXPOSE 8900
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS org.springframework.boot.loader.JarLauncher"]

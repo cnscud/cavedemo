@@ -14,7 +14,7 @@
         <spring-boot.version>2.5.3</spring-boot.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
 
-        <xpower.version>1.0.2</xpower.version>
+        <xpower.version>1.0.3-SNAPSHOT</xpower.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -37,8 +37,12 @@
         <docker.host>http://127.0.0.1:2375</docker.host>
         <docker.registry>127.0.0.1:5000</docker.registry>
         <docker.namespace>cnscud-cavedemo</docker.namespace>
+
+        <!-- 放到maven 的 settings.xml里 -->
+<!--
         <docker.username>cnscud</docker.username>
         <docker.password>123456</docker.password>
+-->
 
     </properties>
 
@@ -481,13 +485,6 @@
                         <dockerHost>${docker.host}</dockerHost>
                         <!-- Docker 镜像私服-->
                         <registry>${docker.registry}</registry>
-                        <!-- 认证信息, 没有设置则注释掉 -->
-                        <authConfig>
-                            <push>
-                                <username>${docker.username}</username>
-                                <password>${docker.password}</password>
-                            </push>
-                        </authConfig>
 
                         <images>
                             <image>

@@ -1,5 +1,6 @@
 package com.cnscud.cavedemo.fundmain.controller;
 
+import com.cnscud.xpower.configcenter.SystemConfig;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,11 @@ public class EchoController {
     @RequestMapping("/hello")
     public String hello() {
         return "Hello" ;
+    }
+
+    @RequestMapping("/config")
+    public String config(String key){
+        return SystemConfig.getInstance().getString(key, "not found");
     }
 
 }

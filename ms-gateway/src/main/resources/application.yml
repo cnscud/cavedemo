@@ -7,12 +7,12 @@ spring:
   main:
     allow-bean-definition-overriding: true
   redis:
-    host: 127.0.0.1
+    host: cd-rd1.cnscud.com
     port: 6379
     database: 0
   cloud:
     zookeeper:
-      connect-string: ${ZK_HOSTS:127.0.0.1:2181}
+      connect-string: ${ZK_HOSTS:cd-zk1.cnscud.com:2181}
       discovery:
         enabled: true
         preferIpAddress: true

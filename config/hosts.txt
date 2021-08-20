@@ -1,0 +1,7 @@
+## 此文件是为了方便本机调试, docker运行使用统一的名称.
+
+172.18.0.145 cd-zk1.cnscud.com
+172.18.0.145 cd-db1.cnscud.com
+172.18.0.145 cd-mq1.cnscud.com
+172.18.0.145 cd-rd1.cnscud.com
+172.18.0.145 demo.cnscud.com

@@ -36,5 +36,22 @@
         </dependency>
     </dependencies>
 
+    <build>
 
+        <plugins>
+
+            <!-- 继承root的设置 -->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+
+    </build>
 </project>

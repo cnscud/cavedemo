@@ -1,4 +1,4 @@
-如何测试Docker
+#准备本地Docker环境 -- 如果使用maven plugin 的话
 
 ## 安装Docker 引擎
     mac下是docker desktop.
@@ -9,6 +9,10 @@
     "https://hub-mirror.c.163.com",
     "https://mirror.baidubce.com"
     ]
+
+## 打通容器和宿主机网络 (如果docker容器需要访问内网资源)
+
+    参见 https://github.com/wenjunxiao/mac-docker-connector
 
 
 ## 安装私服
@@ -38,7 +42,7 @@ registry:2.4.1
 
     重启 Docker Desktop
 
-## 安装私服的管理界面
+## 安装私服的管理界面(有很多种)
 
     docker run -p 8280:80 --name registry-ui \
     --link registry2:registry2 \

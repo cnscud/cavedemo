@@ -12,7 +12,7 @@
 
 ## 测试时访问网址
 
-   数据库: http://127.0.0.1:9001/user/queryBlogs?id=1001
+   数据库: http://127.0.0.1:9001/user/queryById?id=1001
    ZK: http://127.0.0.1:9001/zk/test
    Redis: http://127.0.0.1:9001/redis/test
    队列: http://127.0.0.1:9001/mq/visituser (消费者会同时收到一条消息)
@@ -20,8 +20,14 @@
    异常统一处理: http://127.0.0.1:9001/exception/must
 
 ## docker 命令
-   构建: mvn clean package docker:build
-   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 127.0.0.1:5000/cnscud/ms-fundmain-service:1.0-SNAPSHOT
+   Maven构建: mvn clean package docker:build
+
+   手工构建: docker build -t cnscud/cavedemo/ms-fundmain-service:v1.0.0 .
+
+   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 cnscud/cavedemo/ms-fundmain-service:v1.0.0
+
+   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=cd-zk1.cnscud.com:2181 cnscud/cavedemo/ms-fundmain-service:v1.0.0
+
    停止: docker stop msfs
    删除: docker rm msfs
 

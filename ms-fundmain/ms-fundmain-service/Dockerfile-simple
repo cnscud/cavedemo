@@ -1,7 +1,7 @@
 # 此文件是不分层构建的 Dockerfile
 
 # 该镜像需要依赖的基础镜像
-FROM java:8
+FROM adoptopenjdk/openjdk8:centos-slim
 
 # 将当前maven目录生成的jar文件复制到docker容器的/目录下
 # 可能依赖环境, 经常报错? 原因待查

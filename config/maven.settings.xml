@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <servers>
+
+        <!-- docker registry 服务器地址, 用户名, 密码, 请按实际修改 -->
+
+        <server>
+            <id>127.0.0.1:5000</id>
+            <username>cnscud</username>
+            <password>123456</password>
+        </server>
+
+        <server>
+            <id>127.0.0.1</id>
+            <username>cnscud</username>
+            <password>123456</password>
+        </server>
+
+    </servers>
+
+</settings>
