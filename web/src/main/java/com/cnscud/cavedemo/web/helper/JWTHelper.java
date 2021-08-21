@@ -5,7 +5,9 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.cnscud.xpower.cache.IRedis;
 import com.cnscud.xpower.cache.IRedisCluster;
+import com.cnscud.xpower.cache.impl.RedisAutoConfigCacheFactory;
 import com.cnscud.xpower.cache.impl.RedisClusterAutoConfigCacheFactory;
 
 import org.springframework.stereotype.Component;
@@ -28,7 +30,9 @@ import org.slf4j.LoggerFactory;
 public class JWTHelper {
 
     static Logger logger = LoggerFactory.getLogger(JWTHelper.class);
-    static IRedisCluster rediscluster = RedisClusterAutoConfigCacheFactory.getInstance().getCache("redis.cluster.test");
+    //static IRedisCluster redis = RedisClusterAutoConfigCacheFactory.getInstance().getCache("redis.cluster.test");
+    //为了测试方便, 此时使用redis单个实例
+    static IRedis redis =  RedisAutoConfigCacheFactory.getInstance().getCache("redis.test");
 
 
     // 过期时间7天
@@ -49,13 +53,13 @@ public class JWTHelper {
 
         String userJwtSecretKey = redisKey4UserId(userid);
 
-        if (rediscluster.exists(userJwtSecretKey)) {
-            rediscluster.delete(userJwtSecretKey);
+        if (redis.exists(userJwtSecretKey)) {
+            redis.delete(userJwtSecretKey);
         }
 
         String secret = UUID.randomUUID().toString();
         Algorithm algorithm = Algorithm.HMAC256(secret);
-        rediscluster.set(userJwtSecretKey, secret, EXPIRE_TIME, TimeUnit.SECONDS);
+        redis.set(userJwtSecretKey, secret, EXPIRE_TIME, TimeUnit.SECONDS);
         logger.info(userJwtSecretKey + "&" + secret);
 
         // 附带openid信息
@@ -69,8 +73,8 @@ public class JWTHelper {
     public static void signout(Integer userid){
         String userJwtSecretKey = redisKey4UserId(userid);
 
-        if (rediscluster.exists(userJwtSecretKey)) {
-            rediscluster.delete(userJwtSecretKey);
+        if (redis.exists(userJwtSecretKey)) {
+            redis.delete(userJwtSecretKey);
         }
     }
 
@@ -88,7 +92,7 @@ public class JWTHelper {
 
             String userJwtSecretKey = redisKey4UserId(userid);
 
-            String secret = rediscluster.get(userJwtSecretKey);
+            String secret = redis.get(userJwtSecretKey);
             //例如被清理了
             if(secret == null){
                 return false;
