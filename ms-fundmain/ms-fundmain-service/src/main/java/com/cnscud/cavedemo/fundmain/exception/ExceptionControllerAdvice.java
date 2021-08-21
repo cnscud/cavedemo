@@ -1,5 +1,7 @@
 package com.cnscud.cavedemo.fundmain.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +21,8 @@ import java.util.Map;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
     /**
      * 全局异常捕捉处理
      */
@@ -29,6 +33,9 @@ public class ExceptionControllerAdvice {
         Map<String, Object> map = new HashMap<>();
         map.put("code", 99);
         map.put("msg", ex.getMessage());
+
+        logger.error("error occured!", ex);
+
         return map;
     }
 
