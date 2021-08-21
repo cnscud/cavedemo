@@ -51,7 +51,7 @@
     Redis 桌面: https://github.com/qishibo/AnotherRedisDesktopManager/releases
     Logo网站: https://www.designevo.com/cn/logo-maker/
     
-## 运行环境准备: ---本机运行
+## 运行环境准备: ---本机运行 (Docker方式演示 则不需要)
     1. 启动Zookeeper, 如果不是本机, 则设置"ZK_HOSTS"环境变量
         配置举例: ZK_HOSTS=127.0.0.1:2181
 
@@ -65,9 +65,10 @@
 
     3. 启动Redis 
         参见config/zookeeper/redis* , 如果不一致请修改配置文件
-        使用redis的 utils/create-cluster 可以快速创建一个cluster
+        //使用redis的 utils/create-cluster 可以快速创建一个cluster
+        //本项目: redis://127.0.0.1:6580 redis://127.0.0.1:6581 redis://127.0.0.1:6582
 
-        本项目: redis://127.0.0.1:6580 redis://127.0.0.1:6581 redis://127.0.0.1:6582
+        --> 为了方便, 改成用6379单机版redis
 
     4. (可选) 启动Kafka, 如果不是本机请修改zookeeper配置
         127.0.0.1:9092
