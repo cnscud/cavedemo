@@ -108,6 +108,16 @@ services:
     depends_on:
       - ms-fundmain-service
 
+  mq-consumer:
+    build:
+      context: ./mq-consumers
+    restart: always
+    container_name: mq-consumer
+    hostname: mq-consumer
+    image: cnscud/cavedemo/mq-consumer
+    depends_on:
+      - ms-fundmain-service
+
   demo-web:
     build:
       context: ./web
