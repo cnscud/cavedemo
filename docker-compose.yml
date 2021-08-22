@@ -108,13 +108,13 @@ services:
     depends_on:
       - ms-fundmain-service
 
-  web:
+  demo-web:
     build:
       context: ./web
     ports:
       - "8000:8000"
     restart: always
-    container_name: web
+    container_name: demo-web
     hostname: demo.cnscud.com
     image: cnscud/cavedemo/web
     depends_on:

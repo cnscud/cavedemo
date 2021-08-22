@@ -15,7 +15,7 @@
    数据库: http://127.0.0.1:9001/user/queryById?id=1001
    ZK: http://127.0.0.1:9001/zk/test
    Redis: http://127.0.0.1:9001/redis/test
-   队列: http://127.0.0.1:9001/mq/visituser (消费者会同时收到一条消息)
+   队列: http://127.0.0.1:9001/mq/visituser?userid=1001 (消费者会同时收到一条消息)
    
    异常统一处理: http://127.0.0.1:9001/exception/must
 
