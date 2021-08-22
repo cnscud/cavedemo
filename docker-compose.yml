@@ -6,13 +6,28 @@ services:
       - ./data/redis:/data
     ports:
       - "6379:6379"
-    restart: always
+    restart: on-failure
     container_name: cnscud-redis
     hostname: cd-rd1.cnscud.com
 
-  ## todo how to init data for zookeeper?
+  ## original zookeeper
+#  cnscud-zookeeper:
+#    image: wurstmeister/zookeeper
+#    volumes:
+#      - ./data/zookeeper/data:/data
+#      - ./data/zookeeper/logs:/datalog
+#    container_name: cnscud-zookeeper
+#    environment:
+#      ZOOKEEPER_CLIENT_PORT: 2181
+#      ZOOKEEPER_TICK_TIME: 2000
+#    ports:
+#      - "2181:2181"
+#    restart: always
+#    hostname: cd-zk1.cnscud.com
+
   cnscud-zookeeper:
-    image: wurstmeister/zookeeper
+    build:
+      context: ./config/zookeeper
     volumes:
       - ./data/zookeeper/data:/data
       - ./data/zookeeper/logs:/datalog
@@ -22,8 +37,9 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
-    restart: always
+    restart: on-failure
     hostname: cd-zk1.cnscud.com
+    image: cnscud/cavedemo/zookeeper
 
   # 如果需要保存数据, 则设置data外部绑定volumn
   cnscud-kafka:
@@ -36,7 +52,7 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: cd-mq1.cnscud.com
       KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: cd-zk1.cnscud.com:2181/cnscud-kafka
-    restart: always
+    restart: on-failure
     container_name: cnscud-kafka
     hostname: cd-mq1.cnscud.com
     depends_on:
@@ -53,7 +69,7 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
     ports:
       - "3306:3306"
-    restart: always
+    restart: on-failure
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     container_name: cnscud-mysql5
     hostname: cd-db1.cnscud.com

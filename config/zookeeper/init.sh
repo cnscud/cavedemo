@@ -1,5 +1,9 @@
 #!/bin/sh
 
+##
+## 手工导入, 依赖python脚本 zk
+##
+
 zk create /xpower ""
 zk list /xpower/
 
