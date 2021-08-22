@@ -8,6 +8,7 @@ services:
       - "6379:6379"
     restart: on-failure
     container_name: cnscud-redis
+    ## use the hostname in project
     hostname: cd-rd1.cnscud.com
 
   ## original zookeeper
@@ -38,6 +39,7 @@ services:
     ports:
       - "2181:2181"
     restart: on-failure
+    ## use the hostname in project
     hostname: cd-zk1.cnscud.com
     image: cnscud/cavedemo/zookeeper
 
@@ -54,6 +56,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: cd-zk1.cnscud.com:2181/cnscud-kafka
     restart: on-failure
     container_name: cnscud-kafka
+    ## use the hostname in project
     hostname: cd-mq1.cnscud.com
     depends_on:
       - cnscud-zookeeper
@@ -72,6 +75,7 @@ services:
     restart: on-failure
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     container_name: cnscud-mysql5
+    ## use the hostname in project
     hostname: cd-db1.cnscud.com
     image: cnscud/cavedemo/mysql5
 

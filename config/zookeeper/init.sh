@@ -2,6 +2,7 @@
 
 ##
 ## 手工导入, 依赖python脚本 zk
+## python3 需要安装kazoo依赖包
 ##
 
 zk create /xpower ""

@@ -23,7 +23,7 @@ COPY --from=builder /application/application/ ./
 
 EXPOSE 8000
 
-## default zookeeper
+## default zookeeper, or you can configure in docker-compose
 ENV ZK_HOSTS cd-zk1.cnscud.com:2181
 
 

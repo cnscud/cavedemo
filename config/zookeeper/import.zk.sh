@@ -1,4 +1,10 @@
 #!/bin/bash
+
+## for init zookeeper data, you need update this file
+## author: felix zhang 2021.8.22
+## please make sure the file 755
+
+
 cd $ZK_HOME
 
 ./bin/zkCli.sh create /xpower "1"
