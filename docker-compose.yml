@@ -30,6 +30,7 @@ services:
     build:
       context: ./config/zookeeper
     volumes:
+      - ./config/zookeeper/init.data:/init.data/
       - ./data/zookeeper/data:/data
       - ./data/zookeeper/logs:/datalog
     container_name: cnscud-zookeeper

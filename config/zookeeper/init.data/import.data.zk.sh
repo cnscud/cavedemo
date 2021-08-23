@@ -1,8 +1,11 @@
 #!/bin/bash
 
-## for init zookeeper data, you need update this file
-## author: felix zhang 2021.8.22
+## for init zookeeper data, you need update this file.
+##
+## author: felix zhang https://github.com/cnscud/  2021.8.22
+##
 ## please make sure the file 755
+##
 
 
 CMD=`which zkCli.sh`
@@ -19,7 +22,7 @@ fi
 
 echo $CMD
 
-if [-z $CMD ]
+if [ -z $CMD ]
 then
   echo "not found zkCli.sh, please check!!!"
   exit 1
@@ -31,6 +34,6 @@ $CMD  create /xpower/cache "1"
 $CMD  create /xpower/config "1"
 $CMD  create /xpower/dbn "1"
 
-$CMD  create /xpower/cache/redis.test "`cat /cnscud/redis.test.conf`"
-$CMD  create /xpower/config/kafka "`cat /cnscud/kafka.conf`"
-$CMD  create /xpower/dbn/cavedemo "`cat /cnscud/mysql.cavedemo.conf`"
+$CMD  create /xpower/cache/redis.test "`cat /init.data/redis.test.conf`"
+$CMD  create /xpower/config/kafka "`cat /init.data/kafka.conf`"
+$CMD  create /xpower/dbn/cavedemo "`cat /init.data/mysql.cavedemo.conf`"
