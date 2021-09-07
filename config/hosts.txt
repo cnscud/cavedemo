@@ -1,4 +1,5 @@
 ## 此文件是为了方便本机调试, docker运行使用统一的名称.
+## 如果都用docker部署, 则不需要配置
 
 172.18.0.145 cd-zk1.cnscud.com
 172.18.0.145 cd-db1.cnscud.com

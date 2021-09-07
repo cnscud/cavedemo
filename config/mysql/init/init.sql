@@ -1,4 +1,5 @@
-source /opt/sql/scheme.sql;
+#init by image container, not by sql.
+#source /opt/sql/scheme.sql;
 
 use cavedemo;
 

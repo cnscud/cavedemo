@@ -36,7 +36,7 @@
 
         <docker.host>http://127.0.0.1:2375</docker.host>
         <docker.registry>127.0.0.1:5000</docker.registry>
-        <docker.namespace>cnscud-cavedemo</docker.namespace>
+        <docker.namespace>cnscud</docker.namespace>
 
         <!-- 放到maven 的 settings.xml里 -->
 <!--
@@ -488,7 +488,7 @@
 
                         <images>
                             <image>
-                                <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
+                                <name>${docker.registry}/${docker.namespace}/cavedemo-${project.name}:${project.version}</name>
                                 <build>
                                     <dockerFileDir>${project.basedir}</dockerFileDir>
                                 </build>

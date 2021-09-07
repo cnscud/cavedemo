@@ -62,7 +62,7 @@ services:
     depends_on:
       - cnscud-zookeeper
 
-  cnscud-mysql5:
+  cavedemo-mysql5:
     build:
       context: ./config/mysql
     volumes:
@@ -71,14 +71,17 @@ services:
       - ./config/mysql/sql:/opt/sql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=dbuser
+      - MYSQL_DATABASE=cavedemo
     ports:
       - "3306:3306"
     restart: on-failure
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    container_name: cnscud-mysql5
+    container_name: cavedemo-mysql5
     ## use the hostname in project
     hostname: cd-db1.cnscud.com
-    image: cnscud/cavedemo/mysql5
+    image: cnscud/cavedemo-mysql5
 
   ms-fundmain-service:
     build:
