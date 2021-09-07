@@ -1,0 +1,72 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: cavedemo-mysql-claim
+spec:
+  storageClassName: managed-nfs-storage
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Mi
+
+---
+# if no extra requirment, you need use raw mysql image.
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cavedemo-mysql
+spec:
+  replicas: 1
+  serviceName: cavedemo-mysql
+  selector:
+    matchLabels:
+      name: cavedemo-mysql
+  template:
+    metadata:
+      labels:
+        name: cavedemo-mysql
+    spec:
+      containers:
+        - image: cnscud/cavedemo-mysql5
+          name: cavedemo-mysql
+          args:
+            - "--ignore-db-dir=lost+found"
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
+            - name: MYSQL_PASSWORD     #  新建用户的用户名
+              value: password
+            - name: MYSQL_USER        # 新建的用户
+              value: dbuser
+            - name: MYSQL_DATABASE    # 新建的数据库
+              value: cavedemo
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: cavedemo-mysql-claim
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: cavedemo-mysql
+  name: cavedemo-mysql
+spec:
+  type: NodePort
+  ports:
+    - name: "mysql"
+      port: 3306
+      targetPort: 3306
+      nodePort: 30006
+  selector:
+    name: cavedemo-mysql

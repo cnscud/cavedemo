@@ -67,8 +67,9 @@ services:
       context: ./config/mysql
     volumes:
       - ./data/mysql:/var/lib/mysql
-      - ./config/mysql/init:/docker-entrypoint-initdb.d/
-      - ./config/mysql/sql:/opt/sql
+      # 为了方便演示k8s, 所以这里直接打包到image里了.
+#      - ./config/mysql/init:/docker-entrypoint-initdb.d/
+#      - ./config/mysql/sql:/opt/sql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_PASSWORD=password
