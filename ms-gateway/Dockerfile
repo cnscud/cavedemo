@@ -25,6 +25,6 @@ COPY --from=builder /application/application/ ./
 EXPOSE 8900
 
 ## default zookeeper, or you can configure in docker-compose
-ENV ZK_HOSTS cd-zk1.cnscud.com:2181
+# ENV ZK_HOSTS cd-zk1.cnscud.com:2181
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS org.springframework.boot.loader.JarLauncher"]

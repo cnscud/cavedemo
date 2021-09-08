@@ -84,13 +84,13 @@
         以下是本机配置的方式:
 
         # zookeeper
-        127.0.0.1 cd-zk1.cnscud.com
+        127.0.0.1 cd-zk1.cnscud.com cavedemo-zookeeper
         # mysql
-        127.0.0.1 cd-db1.cnscud.com
+        127.0.0.1 cd-db1.cnscud.com cavedemo-mysql
         # kafka
-        127.0.0.1 cd-mq1.cnscud.com
+        127.0.0.1 cd-mq1.cnscud.com cavedemo-kafka
         # redis
-        127.0.0.1 cd-rd1.cnscud.com
+        127.0.0.1 cd-rd1.cnscud.com cavedemo-redis
         # web
         127.0.0.1 demo.cnscud.com
         

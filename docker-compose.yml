@@ -9,7 +9,7 @@ services:
     restart: on-failure
     container_name: cnscud-redis
     ## use the hostname in project
-    hostname: cd-rd1.cnscud.com
+    hostname: cavedemo-redis
 
   ## original zookeeper
 #  cnscud-zookeeper:
@@ -41,7 +41,7 @@ services:
       - "2181:2181"
     restart: on-failure
     ## use the hostname in project
-    hostname: cd-zk1.cnscud.com
+    hostname: cavedemo-zookeeper
     image: cnscud/cavedemo/zookeeper
 
   # 如果需要保存数据, 则设置data外部绑定volumn
@@ -58,7 +58,7 @@ services:
     restart: on-failure
     container_name: cnscud-kafka
     ## use the hostname in project
-    hostname: cd-mq1.cnscud.com
+    hostname: cavedemo-kafka
     depends_on:
       - cnscud-zookeeper
 
@@ -81,7 +81,7 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     container_name: cavedemo-mysql5
     ## use the hostname in project
-    hostname: cd-db1.cnscud.com
+    hostname: cavedemo-mysql
     image: cnscud/cavedemo-mysql5
 
   ms-fundmain-service:
@@ -89,8 +89,8 @@ services:
       context: ./ms-fundmain/ms-fundmain-service
     ports:
       - "9001:9001"
-#    environment:
-#      ZK_HOSTS: cd-zk1.cnscud.com:2181
+    environment:
+      ZK_HOSTS: cavedemo-zookeeper:2181
     restart: always
     container_name: ms-fundmain-service
     hostname: ms-fundmain-service
@@ -106,6 +106,8 @@ services:
       context: ./ms-gateway
     ports:
       - "8900:8900"
+    environment:
+      ZK_HOSTS: cavedemo-zookeeper:2181
     restart: always
     container_name: ms-gateway
     hostname: ms-gateway
@@ -116,6 +118,8 @@ services:
   mq-consumer:
     build:
       context: ./mq-consumers
+    environment:
+      ZK_HOSTS: cavedemo-zookeeper:2181
     restart: always
     container_name: mq-consumer
     hostname: mq-consumer
@@ -128,6 +132,8 @@ services:
       context: ./web
     ports:
       - "8000:8000"
+    environment:
+      ZK_HOSTS: cavedemo-zookeeper:2181
     restart: always
     container_name: demo-web
     hostname: demo.cnscud.com

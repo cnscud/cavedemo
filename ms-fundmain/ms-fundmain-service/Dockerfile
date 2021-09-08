@@ -24,8 +24,9 @@ COPY --from=builder /application/application/ ./
 
 EXPOSE 9001
 
+# move to docker-compose or k8s configuration
 ## default zookeeper, or you can configure in docker-compose
-ENV ZK_HOSTS cd-zk1.cnscud.com:2181
+# ENV ZK_HOSTS cavedemo-zookeeper:2181
 
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS org.springframework.boot.loader.JarLauncher"]

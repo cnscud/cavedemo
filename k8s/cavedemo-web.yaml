@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: demo-web
+  template:
+    metadata:
+      labels:
+        name: demo-web
+    spec:
+      containers:
+        - image: cnscud/cavedemo-web:1.0
+          name: demo-web
+          env:
+            - name: ZK_HOSTS
+              value: "cavedemo-zookeeper:2181"
+          ports:
+            - containerPort: 9001
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: demo-web
+  name: demo-web
+spec:
+  type: LoadBalancer
+  ports:
+    - name: "web"
+      port: 80
+      targetPort: 8000
+  selector:
+    name: demo-web

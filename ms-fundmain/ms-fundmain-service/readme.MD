@@ -22,11 +22,11 @@
 ## docker 命令
    Maven构建: mvn clean package docker:build
 
-   手工构建: docker build -t cnscud/cavedemo/ms-fundmain-service:v1.0.0 .
+   手工构建: docker build -t cnscud/cavedemo-ms-fundmain-service:1.0 .
 
-   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 cnscud/cavedemo/ms-fundmain-service:v1.0.0
+   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 cnscud/cavedemo-ms-fundmain-service:1.0
 
-   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=cd-zk1.cnscud.com:2181 cnscud/cavedemo/ms-fundmain-service:v1.0.0
+   运行: docker run --name msfs -p 9001:9001 -d  --env ZK_HOSTS=cd-zk1.cnscud.com:2181 cnscud/cavedemo-ms-fundmain-service:1.0
 
    停止: docker stop msfs
    删除: docker rm msfs

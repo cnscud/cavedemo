@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq-consumers
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: mq-consumers
+  template:
+    metadata:
+      labels:
+        name: mq-consumers
+    spec:
+      containers:
+        - image: cnscud/cavedemo-mq-consumers:1.0
+          name: mq-consumers
+          env:
+            - name: ZK_HOSTS
+              value: "cavedemo-zookeeper:2181"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mq-consumers
+  name: mq-consumers
+spec:
+  selector:
+    name: mq-consumers
+  clusterIP: None
