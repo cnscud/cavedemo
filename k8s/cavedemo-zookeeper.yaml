@@ -1,0 +1,89 @@
+#
+# for zookeeper.
+#
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cavedemo-zk-conf
+data:
+  import.data.zk.sh: "#!/bin/bash\n\n## for init zookeeper data, you need update this file.\n##\n## author: felix zhang https://github.com/cnscud/  2021.8.22\n##\n## please make sure the file 755\n##\n\n\nCMD=`which zkCli.sh`\nfind=\"1\"\nif [ -z $CMD ]\nthen\n\tfind=\"0\"\nfi\n\nif [ $find = \"0\" ]\nthen\n\tCMD=\"$ZK_HOME/bin/zkCli.sh\"\nfi\n\necho $CMD\n\nif [ -z $CMD ]\nthen\n  echo \"not found zkCli.sh, please check!!!\"\n  exit 1\nfi\n\n\n$CMD  create /xpower \"1\"\n$CMD  create /xpower/cache \"1\"\n$CMD  create /xpower/config \"1\"\n$CMD  create /xpower/dbn \"1\"\n\n$CMD  create /xpower/cache/redis.test \"`cat /init.data/redis.test.conf`\"\n$CMD  create /xpower/config/kafka \"`cat /init.data/kafka.conf`\"\n$CMD  create /xpower/dbn/cavedemo \"`cat /init.data/mysql.cavedemo.conf`\"\n"
+  redis.test.conf: |
+    cavedemo-redis:6379
+
+  mysql.cavedemo.conf: |
+    {
+      "url": "jdbc:mysql://cavedemo-mysql:3306/cavedemo?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
+      "username": "dbuser",
+      "password": "password",
+      "driver-class-name": "com.mysql.cj.jdbc.Driver"
+    }
+
+  kafka.conf: |
+    cavedemo-kafka:9092
+
+---
+
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cavedemo-zookeeper
+spec:
+  serviceName: cavedemo-zookeeper
+  selector:
+    matchLabels:
+      name: cavedemo-zookeeper
+  template:
+    metadata:
+      labels:
+        name: cavedemo-zookeeper
+    spec:
+      containers:
+        - name: cavedemo-zookeeper
+          env:
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "2181"
+            - name: ZOOKEEPER_TICK_TIME
+              value: "2000"
+          image: cnscud/zookeeper:zk3.6-0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 2181
+              name: zookeeper
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /init.data/
+              name: cavedemo-zk-conf
+            - mountPath: /data
+              name: cavedemo-zkdata-claim
+            - mountPath: /datalog
+              name: cavedemo-zkdatalog-claim
+      volumes:
+        - name: cavedemo-zk-conf
+          configMap:
+            name: cavedemo-zk-conf
+        - name: cavedemo-zkdata-claim
+          persistentVolumeClaim:
+            claimName: cavedemo-zkdata-claim
+        - name: cavedemo-zkdatalog-claim
+          persistentVolumeClaim:
+            claimName: cavedemo-zkdatalog-claim
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    name: cavedemo-zookeeper
+  name: cavedemo-zookeeper
+spec:
+  type: NodePort
+  ports:
+    - name: zookeeper
+      port: 2181
+      targetPort: 2181
+      nodePort: 30181
+  selector:
+    name: cavedemo-zookeeper
+

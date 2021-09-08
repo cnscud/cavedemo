@@ -18,19 +18,6 @@ data:
 
 ---
 
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: cavedemo-redis-claim
-spec:
-  storageClassName: managed-nfs-storage
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
----
-
 
 apiVersion: apps/v1
 kind: StatefulSet
@@ -47,6 +34,7 @@ spec:
       labels:
         name: cavedemo-redis
     spec:
+
       initContainers:
         - name: init-redis
           image: busybox
