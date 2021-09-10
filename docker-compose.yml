@@ -11,21 +11,6 @@ services:
     ## use the hostname in project
     hostname: cavedemo-redis
 
-  ## original zookeeper
-#  cnscud-zookeeper:
-#    image: wurstmeister/zookeeper
-#    volumes:
-#      - ./data/zookeeper/data:/data
-#      - ./data/zookeeper/logs:/datalog
-#    container_name: cnscud-zookeeper
-#    environment:
-#      ZOOKEEPER_CLIENT_PORT: 2181
-#      ZOOKEEPER_TICK_TIME: 2000
-#    ports:
-#      - "2181:2181"
-#    restart: always
-#    hostname: cd-zk1.cnscud.com
-
   cnscud-zookeeper:
     build:
       context: ./config/zookeeper
@@ -52,9 +37,9 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: cd-mq1.cnscud.com
+      KAFKA_ADVERTISED_HOST_NAME: cavedemo-kafka
       KAFKA_CREATE_TOPICS: "test:1:1"
-      KAFKA_ZOOKEEPER_CONNECT: cd-zk1.cnscud.com:2181/cnscud-kafka
+      KAFKA_ZOOKEEPER_CONNECT: cavedemo-zookeeper:2181/cnscud-kafka
     restart: on-failure
     container_name: cnscud-kafka
     ## use the hostname in project
@@ -82,7 +67,7 @@ services:
     container_name: cavedemo-mysql5
     ## use the hostname in project
     hostname: cavedemo-mysql
-    image: cnscud/cavedemo-mysql5
+    image: cnscud/cavedemo/mysql5
 
   ms-fundmain-service:
     build:
