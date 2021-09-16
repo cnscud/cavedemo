@@ -1,3 +1,4 @@
+# 已经改成由容器自己创建, 所以本SQL仅供参考.
 CREATE DATABASE IF NOT EXISTS `cavedemo` DEFAULT COLLATE = `utf8mb4_general_ci`;
 
 
