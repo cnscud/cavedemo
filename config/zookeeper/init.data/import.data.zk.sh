@@ -34,6 +34,8 @@ $CMD  create /xpower/cache "1"
 $CMD  create /xpower/config "1"
 $CMD  create /xpower/dbn "1"
 
+
 $CMD  create /xpower/cache/redis.test "`cat /init.data/redis.test.conf`"
 $CMD  create /xpower/config/kafka "`cat /init.data/kafka.conf`"
 $CMD  create /xpower/dbn/cavedemo "`cat /init.data/mysql.cavedemo.conf`"
+$CMD  create /xpower/config/cavedemo/test "hello"

@@ -18,10 +18,11 @@ zk create /xpower/cache/redis.test init.data/redis.test.conf
 zk create /xpower/cache/redis.cluster.test init.data/redis.cluster.test.conf
 zk create /xpower/config/kafka init.data/kafka.conf
 zk create /xpower/dbn/cavedemo init.data/mysql.cavedemo.conf
+zk create /xpower/config/cavedemo/test "hello"
 
 ## 方便覆盖, 注意会覆盖数据
-zk set /xpower/cache/redis.test redis.test.conf
-zk set /xpower/cache/redis.cluster.test redis.cluster.test.conf
-zk set /xpower/config/kafka kafka.conf
-zk set /xpower/dbn/cavedemo mysql.cavedemo.conf
-
+zk set /xpower/cache/redis.test init.data/redis.test.conf
+zk set /xpower/cache/redis.cluster.test init.data/redis.cluster.test.conf
+zk set /xpower/config/kafka init.data/kafka.conf
+zk set /xpower/dbn/cavedemo init.data/mysql.cavedemo.conf
+zk set /xpower/config/cavedemo/test "hello"
