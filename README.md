@@ -75,6 +75,8 @@
 
     5. 导入更新后的数据: config/zookeeper
         查看并运行 init.sh 导入zookeeper配置
+        注意此zk 需要python3, 并安装 kazoo 模块.
+        注意zk路径, 或者加到PATH里.
 
     6. 配置域名
         因为使用Cookie保存用户信息, 可以设置域名为 demo.cnscud.com , 需要自己配置hosts

@@ -10,12 +10,12 @@
     "https://mirror.baidubce.com"
     ]
 
-## 打通容器和宿主机网络 (如果docker容器需要访问内网资源)
+## 打通容器和宿主机网络 (Mac系统, 如果docker容器需要访问内网资源)
 
     参见 https://github.com/wenjunxiao/mac-docker-connector
 
 
-## 安装私服
+## 安装私服 (可选)
 为了方便, 本机安装一个私服, 也可以使用Nexus安装, 或者使用阿里云等.
 
 ### opt下创建文件夹
