@@ -1,7 +1,9 @@
 #
-# target image name: cnscud/cavedemo-mysql5
+# target image name: cnscud/cavedemo-mysql
 #
-FROM mysql:5.7
+# FROM mysql:5.7
+# for also support arm64, the 5.7 not support arm64
+FROM mysql/mysql-server:8.0
 
 LABEL OG=cnscud.com
 

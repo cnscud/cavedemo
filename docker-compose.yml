@@ -47,7 +47,7 @@ services:
     depends_on:
       - cnscud-zookeeper
 
-  cavedemo-mysql5:
+  cavedemo-mysql:
     build:
       context: ./config/mysql
     volumes:
@@ -64,10 +64,10 @@ services:
       - "3306:3306"
     restart: on-failure
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    container_name: cavedemo-mysql5
+    container_name: cavedemo-mysql
     ## use the hostname in project
     hostname: cavedemo-mysql
-    image: cnscud/cavedemo/mysql5
+    image: cnscud/cavedemo/mysql
 
   ms-fundmain-service:
     build:
@@ -83,7 +83,7 @@ services:
     depends_on:
       - cnscud-zookeeper
       - cnscud-redis
-      - cnscud-mysql5
+      - cavedemo-mysql
       - cnscud-kafka
 
   ms-gateway:

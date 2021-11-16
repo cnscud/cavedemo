@@ -3,7 +3,9 @@ Web 模块
 
 ## docker 命令
 
-Maven构建: mvn clean package docker:build
+Maven构建: mvn  -DskipTests=true clean package
+
+Maven构建(如果搭建了docker私服): mvn docker:build
 
 手工构建: docker build -t cnscud/cavedemo-mq-consumers:1.0 .
 

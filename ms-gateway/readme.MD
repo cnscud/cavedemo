@@ -1,7 +1,7 @@
 网关
 
 ##访问网址
-    自动的: http://127.0.0.1:8900/ms-fundmain-service/user/queryBlogs?id=1000
+    自动的: http://127.0.0.1:8900/ms-fundmain-service/user/queryById?id=1000
     配置的: http://127.0.0.1:8900/fundmain/user/queryById?id=1000
 
     错误的: http://127.0.0.1:8900/fundmain/abc/aaa?id=1000
@@ -52,9 +52,11 @@
 
 ## docker 命令
 
-  Maven构建: mvn clean package docker:build
+  Maven构建: mvn  -DskipTests=true clean package 
+  
+  Maven构建(如果搭建了docker私服): mvn docker:build
 
-  手工构建: docker build -t cnscud/cavedemo-ms-gateway:1.0 .
+  手工构建(不依赖docker私服): docker build -t cnscud/cavedemo-ms-gateway:1.0 .
 
   运行: docker run --name msgateway -p 9001:9001 -d  --env ZK_HOSTS=172.18.0.145:2181 cnscud/cavedemo-ms-gateway:1.0
 
